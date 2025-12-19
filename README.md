@@ -1,7 +1,9 @@
-# Environmental trade-off calculator
-Environmental Trade-off Calculator 
+# Contextual background
+In Brazil, every infrastructure project with medium/high environmental impact must have an environmental license. In order to do that, one of the steps is to estimate the trade-off needed depending on the impact caused. The math for doing that is relatively straightforward, however, each municipality has its owns rules of trade-off, and there is not a unified platform where the consultants can check the value per type of intervention, and per location. Usually this is a very manual process, where consultants need to visit governmental websites and go through multiple PDFs. Thus, the main motivation of this project is to create an unique platform where the consultants can go and get the trade-off values per type and location of intervention.
 
-This project is a small full-stack web app to help estimate environmental tree compensation required under local(Sao Paulo state) regulations.
+# Environmental trade-off calculator
+
+This project is a small full-stack web app to help estimate environmental trade-off for isolated trees, patch and PPA areas, required under local(Sao Paulo municipalities) regulations.
 
 The frontend is a simple HTML/CSS/JavaScript single page with tabs for each workflow, calling the Flask endpoints via fetch and rendering tables with the detailed results and totals.
 
@@ -9,11 +11,11 @@ The backend is a Flask API (with Swagger/OpenAPI docs) that reads compensation r
 
 Isolated trees – given quantity, group (native/exotic), municipality and whether the species is endangered, the API returns the tree-level trade-off and the total trade-off per item and per lot.
 
-Forest patches / area (m²) – given municipality and patch area, it looks up the compensation factor (per m²) and computes the total patch trade-off.
+Forest patches / area (m²) – given municipality and patch area, it looks up the trade-off factor (per m²) and computes the total patch trade-off.
 
-Permanent Preservation Area(PPA) – similar to patches, but using a separate rules table for PPA trade-off.
+Permanent Preservation Area(PPA) – similar to patches, but using a separate rules municipality table for PPA trade-off.
 
-Species conservation status – query a species (family + scientific name) and return its IUCN-style status (EW, CR, EN, VU, etc.).
+Species conservation status – query a species (family + scientific name) and return its IUCN-style status (EW, CR, EN, VU, etc.). This is useful in case of the consultant not knowing if a specie is endangered or not (this information is required for calculate isolated trees trade-off).
 
 For both cases the compensation will be automatically calculated based on individual municipalities environmental rules.
 
